@@ -1,0 +1,15 @@
+img{
+    width: 450px;
+    height: 350px;
+}
+h2{
+    background-color: yellow;
+}
+h1{
+    background-color: rgb(227, 155, 236);
+    color: chartreuse;
+}
+ul#menu li{
+  display: inline;
+  margin-right: 10px;
+}
