@@ -1,6 +1,7 @@
 import CollatzComponent from "./components/CollatzComponent.vue";
 import HomeComponent from "./components/HomeComponent.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import TablaMultiplicar from "./components/TablaMultiplicar.vue";
 const myRoutes = [
   {
     path: "/",
@@ -9,6 +10,10 @@ const myRoutes = [
   {
     path: "/collatz",
     component: CollatzComponent,
+  },
+  {
+    path: "/tablamultiplicar",
+    component: TablaMultiplicar,
   },
 ];
 

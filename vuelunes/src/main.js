@@ -14,6 +14,12 @@ app.config.globalProperties.$filters = {
     }
     return dataHtml;
   },
+  getOperacion(numero, num) {
+    return `${numero} x ${num}`;
+  },
+  getResultado(numero, num) {
+    return `${numero * num}`;
+  },
 };
 
 app.use(router).mount("#app");
