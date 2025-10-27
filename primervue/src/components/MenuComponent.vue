@@ -7,6 +7,12 @@
       <li><router-link to="/ciclovida">Ciclo de vida</router-link></li>
       <li><router-link to="/directivas">Directivas vue</router-link></li>
       <li><router-link to="/pareimpar">numeros par e impar</router-link></li>
+      <li>
+        <router-link to="/propiedadconmutada">Propiedad Conmutada</router-link>
+      </li>
+      <li>
+        <router-link to="/filters">Filtros</router-link>
+      </li>
     </ul>
   </div>
 </template>
