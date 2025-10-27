@@ -4,7 +4,7 @@
     <h2>{{ mensaje }}</h2>
     <label>Introduce un numero</label>
     <input type="number" v-model="numero" />
-    <button @click="generarRamdom()">Generar numero ramdon</button>
+    <button v-on:click="generarRamdom()">Generar numero ramdon</button>
   </div>
 </template>
 
