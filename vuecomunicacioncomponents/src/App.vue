@@ -1,9 +1,12 @@
 <template>
-  <ComicsComponent />
+  <CheckboxComponent />
 </template>
 
 <script>
-import ComicsComponent from './components/ComicsComponent.vue';
+import CheckboxComponent from './components/CheckboxComponent.vue';
+
+
+
 
 
 
@@ -11,7 +14,7 @@ import ComicsComponent from './components/ComicsComponent.vue';
 export default {
   name: "App",
   components: {
-    ComicsComponent,
+    CheckboxComponent,
   },
 };
 </script>
