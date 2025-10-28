@@ -2,7 +2,13 @@
   <div>
     <h1 style="color: blue">Padre Deportes Component</h1>
     <hr />
-    <HijoDeportes :deportes="deportes" />
+    <h2 v-if="favorito" style="background-color: yellow;">Su deporte favorito es {{ favorito }}</h2>
+    <ul>
+      <li v-for="sport in deportes" :key="sport">
+        <HijoDeportes :nombreDeporte="sport" v-on:seleccionarFavoritoParent="seleccionarFavoritoParent" />
+      </li>
+    </ul>
+    
   </div>
 </template>
 
@@ -16,8 +22,14 @@ export default {
   data() {
     return {
       deportes: ["Futbol", "Baloncesto", "Tenis", "Rugby"],
+      favorito:null
     };
   },
+  methods:{
+    seleccionarFavoritoParent(deporteFavorito){
+      this.favorito=deporteFavorito;
+    }
+  }
 };
 </script>
 
