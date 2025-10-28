@@ -1,15 +1,17 @@
 <template>
-  <PadreSuma />
+  <ComicsComponent />
 </template>
 
 <script>
+import ComicsComponent from './components/ComicsComponent.vue';
 
-import PadreSuma from "./components/PadreSuma.vue";
+
+
 
 export default {
   name: "App",
   components: {
-    PadreSuma,
+    ComicsComponent,
   },
 };
 </script>

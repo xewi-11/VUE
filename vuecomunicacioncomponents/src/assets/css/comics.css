@@ -1,0 +1,84 @@
+.rojo{
+    background-color: red;
+    color: white;
+}
+.verde{
+    background-color: lightgreen;
+}
+
+div#comics{
+    float: left;
+}
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 240px;
+  padding: 16px;
+  margin: 14px;
+
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.Card h1 {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.Card img {
+  width: 200px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.Card p {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #444;
+  margin: 6px 0;
+}
+
+
+
+/* 🎯 Botones */
+.Card button {
+  padding: 8px 14px;
+  margin-top: 6px;
+
+  border: none;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.Card button:hover {
+  background-color: #0d47a1;
+}
+
+/* 🔹 Si quieres que las cartas se ordenen bien en grupo */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
