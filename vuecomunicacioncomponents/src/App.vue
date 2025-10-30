@@ -1,9 +1,15 @@
 <template>
-  <CheckboxComponent />
+  <div class="menu-layout"><MenuTabla />
+  <MenuComponent /></div>
+  
+  <router-view></router-view>
 </template>
 
 <script>
-import CheckboxComponent from './components/CheckboxComponent.vue';
+import MenuComponent from './components/MenuComponent.vue';
+
+
+import MenuTabla from './components/MenuTabla.vue';
 
 
 
@@ -14,7 +20,8 @@ import CheckboxComponent from './components/CheckboxComponent.vue';
 export default {
   name: "App",
   components: {
-    CheckboxComponent,
+    MenuTabla,
+    MenuComponent,
   },
 };
 </script>
@@ -27,5 +34,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.menu-layout {
+  display: flex;
+  justify-content: center; /* centra los menús horizontalmente */
+  align-items: flex-start; /* alinea los menús arriba */
+  gap: 40px; /* espacio entre los menús */
+  margin-top: 40px;
+  flex-wrap: wrap; /* permite que se acomoden en varias filas si la pantalla es pequeña */
 }
 </style>
