@@ -1,7 +1,6 @@
 <template>
   <div class="customers-container">
     <h1 class="title">🧾 Customers Component</h1>
-
     <div v-if="customerFound" class="customer-found">
       <h2>Cliente encontrado:</h2>
       <div class="customer-card">
@@ -18,7 +17,7 @@
         placeholder="🔍 Buscar cliente por ID..."
         class="search-input"
       />
-      <button type="submit" class="search-button">Buscar</button>
+      <button type="submit" class="search-button ">Buscar</button>
     </form>
 
     <div class="table-container">
@@ -43,6 +42,7 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 import Global from '../Global.js';
 

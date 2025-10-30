@@ -1,17 +1,20 @@
 <template>
   
-  <CustomersComponent />
+  <MenuComponent />
+  <router-view></router-view>
 </template>
 
 <script>
 
-import CustomersComponent from './components/CustomersComponent.vue';
+
+
+import MenuComponent from './components/MenuComponent.vue';
 
 
 export default {
   name: 'App',
   components: {
-    CustomersComponent
+    MenuComponent
   }
 }
 </script>
