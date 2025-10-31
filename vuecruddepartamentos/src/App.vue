@@ -1,14 +1,11 @@
 <template>
-  <MenuComponent />
+  <MenuComponent/>
   <router-view></router-view>
 </template>
 
 <script>
 
-
-
 import MenuComponent from './components/MenuComponent.vue';
-
 
 export default {
   name: 'App',
@@ -25,6 +22,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 10px;
+  margin-top: 60px;
 }
 </style>

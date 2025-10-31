@@ -4,6 +4,7 @@
 
     <!-- Navbar inferior: usa la misma fuente navItems para estar sincronizado -->
     <nav class="navbar navbar-expand navbar-light bg-light">
+        <h1 style="font-size: 1.2rem;">CRUD DEPARTAMENTOS</h1>
       <ul class="nav navbar-nav">
         <li class="nav-item" v-for="item in navItems" :key="item.path + '-nav'">
           <router-link
@@ -28,7 +29,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li v-for="oficio in oficios" :key="oficio">
-              <router-link class="dropdown-item" :to="{ path: '/empleadosoficios/' + oficio }">{{ oficio }}</router-link>
+              <router-link class="dropdown-item" :to="{ path: '/' }">opciones</router-link>
+
             </li>
           </ul>
         </li>
@@ -38,8 +40,7 @@
 </template>
 
 <script>
-import ServiceEmpleados from "@/services/ServiceEmpleados";
-const service=new ServiceEmpleados();
+
 export default {
   name: "MenuComponent",
   data() {
@@ -47,18 +48,12 @@ export default {
       // Fuente única de elementos de navegación. Mantener en sync con Router si cambia.
       navItems: [
         { name: "Home", path: "/" },
-        { name: "Coches", path: "/coches" },
-        { name: "Empleados", path: "/empleados" },
-        { name: "Customers", path: "/customers" },
+        { name: "Crear", path: "/insert" },
+        
       ],
       oficios: [],
     };
-  },
-  mounted() {
-    service.getOficios().then((data)=>{
-        this.oficios=data;
-    })
-  },
+  }
 };
 </script>
 

@@ -1,5 +1,5 @@
 {
-  "name": "vueservicios",
+  "name": "vuecruddepartamentos",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "axios": "^1.13.1",
-    "core-js": "^3.46.0",
+    "core-js": "^3.8.3",
+    "sweetalert2": "^11.26.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.13"
   },

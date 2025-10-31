@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import Global from "../Global.js";
-var urlApi = Global.urlEmpleados;
+
+import ServiceEmpleados from "@/services/ServiceEmpleados.js";
+const service = new ServiceEmpleados();
 export default {
   name: "EmpleadosDetailsComponent",
   data() {
@@ -50,19 +50,15 @@ export default {
     };
   },
   mounted() {
-    let request = "api/Empleados";
-    axios.get(urlApi + request).then((response) => {
-      console.log("Leyendo datos empleados");
-      this.empleados = response.data;
+    service.getEmpleados().then((data) => {
+      this.empleados = data;
     });
   },methods:{
     onEmpleadoChange(){
         console.log("Empleado cambiado a: " + this.idEmpleado);
-         let request="api/Empleados/" + this.idEmpleado;
-         axios.get(urlApi + request).then((response) => {
-           console.log("Leyendo datos empleado");
-           this.selectedEmpleado = response.data;
-         });
+         service.getEmpleadoID(this.idEmpleado).then((data)=>{
+        this.selectedEmpleado = data;
+         })
     }
   }
 };
