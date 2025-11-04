@@ -72,7 +72,7 @@ export default {
         imagen: this.imagen,
         idSerie: this.idSerie,
       };
-      service.setPersonaje(nuevoPersonaje).then((response) => {
+      service.setPersonaje2(nuevoPersonaje).then((response) => {
         console.log('Personaje insertado:', response);
         this.$router.push('/personajes/' + this.idSerie);
       });
@@ -160,7 +160,7 @@ export default {
   border-radius: 8px;
   border: 1px solid #5bc0be;
   background: rgba(255, 255, 255, 0.1);
-  color: #e0eaff;
+  color: #15cf1e;
   font-size: 1rem;
   transition: all 0.3s ease;
 }

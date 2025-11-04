@@ -47,26 +47,33 @@
         <h2>🎬 Serie Seleccionada</h2>
         <h3>{{ serie.nombre }}</h3>
         <img :src="serie.imagen" :alt="serie.nombre" />
-        <p>⭐ Puntuación: <strong>{{ serie.puntuacion }}</strong></p>
-        <p>📅 Año: <strong>{{ serie.anyo }}</strong></p>
+        <p>
+          ⭐ Puntuación: <strong>{{ serie.puntuacion }}</strong>
+        </p>
+        <p>
+          📅 Año: <strong>{{ serie.anyo }}</strong>
+        </p>
       </div>
 
       <div v-if="personaje.idPersonaje" class="tarjeta">
         <h2>🧍 Personaje Seleccionado</h2>
         <h3>{{ personaje.nombre }}</h3>
         <img :src="personaje.imagen" :alt="personaje.nombre" />
-        <p>🎞 ID Serie: <strong>{{ personaje.idSerie }}</strong></p>
+        <p>
+          🎞 ID Serie: <strong>{{ personaje.idSerie }}</strong>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import SeriesService from '@/services/SeriesService';
+import swal from "sweetalert2";
+import SeriesService from "@/services/SeriesService";
 const service = new SeriesService();
 
 export default {
-  name: 'UpdatePersonaje',
+  name: "UpdatePersonaje",
   data() {
     return {
       series: [],
@@ -75,15 +82,15 @@ export default {
       serieSeleccionada: null,
       serie: {
         idSerie: null,
-        nombre: '',
-        imagen: '',
+        nombre: "",
+        imagen: "",
         puntuacion: null,
         anyo: null,
       },
       personaje: {
         idPersonaje: null,
-        nombre: '',
-        imagen: '',
+        nombre: "",
+        imagen: "",
         idSerie: null,
       },
     };
@@ -104,10 +111,30 @@ export default {
         idPersonaje: this.personajeSeleccionado,
         idSerie: this.serieSeleccionada,
       };
-      service.updatePersonaje(personajeActualizado).then((response) => {
-        console.log('Personaje actualizado:', response);
-        this.$router.push('/personajes/' + this.serieSeleccionada);
-      });
+      swal
+        .fire({
+          title: "¿Estás seguro?",
+          text: "¡No podrás revertir esto!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, actualizarlo",
+          cancelButtonText: "Cancelar",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            service.updatePersonaje(personajeActualizado).then((response) => {
+              console.log("Personaje actualizado:", response);
+              this.$router.push("/personajes/" + this.serieSeleccionada);
+            });
+            swal.fire(
+              "¡Actualizado!",
+              "El personaje ha sido actualizado.",
+              "success"
+            );
+          }
+        });
     },
     cargarInformaionSerie() {
       const idSerie = this.serieSeleccionada;
@@ -137,7 +164,7 @@ export default {
   background-size: 400% 400%;
   animation: fondoAnimado 12s ease infinite;
   color: #e0eaff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 40px;
   text-align: center;
 }
