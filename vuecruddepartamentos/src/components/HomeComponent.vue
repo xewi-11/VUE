@@ -16,27 +16,33 @@
           <td>{{ dep.numero }}</td>
           <td>{{ dep.nombre }}</td>
           <td>{{ dep.localidad }}</td>
-          <td>
-            <router-link
-              class="btn btn-warning"
-              :to="`/details/${dep.numero}/${dep.nombre}/${dep.localidad}`"
-            >
-              Ver Detalles
-            </router-link>
-            <router-link
-              style="margin-left: 10px"
-              class="btn btn-info"
-              :to="`/update/${dep.numero}`"
-            >
-              Actualizar
-            </router-link>
-            <button
-              style="margin-left: 10px"
-              class="btn btn-danger"
-              @click="deleteDepartamento(dep.numero)"
-            >
-              Eliminar
-            </button>
+          <td class="acciones">
+            <!-- Botón de los tres puntos -->
+            <div class="menu-container">
+              <button class="menu-btn" @click="toggleMenu(dep.numero)">⋮</button>
+
+              <!-- Menú desplegable -->
+              <div v-if="menuAbierto === dep.numero" class="menu-desplegable">
+                <router-link
+                  class="menu-item ver"
+                  :to="`/details/${dep.numero}/${dep.nombre}/${dep.localidad}`"
+                >
+                  Ver Detalles
+                </router-link>
+                <router-link
+                  class="menu-item actualizar"
+                  :to="`/update/${dep.numero}`"
+                >
+                  Actualizar
+                </router-link>
+                <button
+                  class="menu-item eliminar"
+                  @click="deleteDepartamento(dep.numero)"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -56,6 +62,7 @@ export default {
     return {
       departamentos: [],
       status: false,
+      menuAbierto: null, // <-- Guarda el ID del menú abierto
     };
   },
   mounted() {
@@ -63,8 +70,22 @@ export default {
       this.departamentos = response;
       this.status = true;
     });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', this.cerrarMenu);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.cerrarMenu);
   },
   methods: {
+    toggleMenu(id) {
+      this.menuAbierto = this.menuAbierto === id ? null : id;
+    },
+    cerrarMenu(event) {
+      if (!event.target.closest('.menu-container')) {
+        this.menuAbierto = null;
+      }
+    },
     deleteDepartamento(id) {
       Swal.fire({
         title: '¿Estás seguro?',
@@ -85,7 +106,7 @@ export default {
             this.departamentos = this.departamentos.filter(
               (dep) => dep.numero !== id
             );
-            this.$router.push('/');
+            this.menuAbierto = null;
           });
         }
       });
@@ -143,6 +164,58 @@ export default {
 
 .tabla-departamentos tr:hover td {
   background: rgba(91, 192, 190, 0.1);
+}
+
+/* === NUEVO: menú de opciones === */
+.menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #5bc0be;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-btn:hover {
+  color: #ffffff;
+}
+
+.menu-desplegable {
+  position: absolute;
+  right: 0;
+  background: rgba(20, 30, 60, 0.95);
+  border: 1px solid #5bc0be;
+  border-radius: 6px;
+  padding: 5px 0;
+  min-width: 160px;
+  box-shadow: 0 0 10px rgba(91, 192, 190, 0.3);
+  z-index: 10;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #e0eaff;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.menu-item:hover {
+  background: rgba(91, 192, 190, 0.2);
+}
+
+.menu-item.eliminar:hover {
+  background: rgba(211, 51, 51, 0.4);
 }
 
 @media (max-width: 768px) {
