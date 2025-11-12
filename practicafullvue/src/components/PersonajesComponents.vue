@@ -15,7 +15,7 @@
         <tr v-for="personaje in personajes" :key="personaje.idPersonaje">
           <td class="nombre">{{ personaje.nombre }}</td>
           <td>
-            <img
+            <img 
               :src="personaje.imagen"
               :alt="'Imagen de ' + personaje.nombre"
               class="img-personaje"
