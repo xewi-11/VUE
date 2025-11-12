@@ -10,7 +10,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" v-model="cajaPassword" />
         </div>
-        <button @click="login()" type="submit">Login</button>
+        <button @click.prevent="login()" type="submit">Login</button>
     </form>
   </div>
 </template>
@@ -32,8 +32,9 @@ export default {
     methods:{
         login() {
             service.loginForUser(this.cajaName, this.cajaPassword).then((response)=>{
-                console.log(response);
-                Global.tokenEmpleados=response.response;
+                
+                Global.tokenEmpleados=response;
+                this.$router.push({ path: '/detalles' });
             })
         }
     }
