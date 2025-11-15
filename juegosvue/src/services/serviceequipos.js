@@ -21,4 +21,22 @@ export default class ServiceEquipos{
              });
           })
     }
+    getJugadoresByEquipo(idEquipo){
+          return new Promise((resolve)=>{
+             let request="api/Jugadores/JugadoresEquipos/"+idEquipo;
+             let url=Global.apiFutbol+request;
+             axios.get(url).then(response=>{
+                 resolve(response.data);
+             });
+          })
+    }
+    getJugadoresPorNombre(nombre){
+            return new Promise((resolve)=>{
+                let request="api/Jugadores/BuscarJugadores/"+nombre;
+                let url=Global.apiFutbol+request;
+                axios.get(url).then(response=>{
+                    resolve(response.data);
+                });
+            })
+    }
 }

@@ -8,7 +8,7 @@
           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/insertar-archivos">Subir archivos</router-link>
+          <router-link class="nav-link" to="/insertararchivos">Subir archivos</router-link>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,7 +25,7 @@
       </ul>
       <form class="d-flex">
         <input  v-model="cajaNombre" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button  class="btn btn-outline-success" type="submit">Search</button>
+        <button v-on:click="buscarJugadores()" class="btn btn-outline-success" type="submit">Search</button>
       </form>
       
     </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import router from '@/Router';
 import ServiceEquipos from '@/services/serviceequipos';
 
 const service =new ServiceEquipos();
@@ -51,7 +52,10 @@ export default {
              service.getEquipos().then(response=>{
                     this.equipos=response;
              });
-         }
+         },
+         buscarJugadores(){
+             router.push({path:"/jugadores/"+this.cajaNombre});
+        }
     },
     mounted(){
         this.cargarEquipos();
