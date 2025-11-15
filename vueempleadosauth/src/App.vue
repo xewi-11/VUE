@@ -1,20 +1,32 @@
 <template>
  <div>
-  <MenuComponent/>
-  <router-view/>
+  <div v-if="empleadosToken">
+    <MenuComponent/>
+    <router-view/>
+  </div>
+  <div v-else>
+    <LoginComponent/>
+  </div>
  </div>
 </template>
 
 <script>
-import MenuComponent from './components/menucomponent.vue'
-
+import MenuComponent from './components/menucomponent.vue';
+import LoginComponent from './components/logincomponent.vue';
+import Global from './Global';
 
 export default {
   name: 'App',
   components: {
-    MenuComponent
+    MenuComponent,
+    LoginComponent
+  },
+  data() {
+    return {
+      empleadosToken: Global.tokenEmpleados // Asumiendo que el token está en Global.tokenEmpleados
+    };
   }
-}
+};
 </script>
 
 <style>
