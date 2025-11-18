@@ -17,7 +17,6 @@
 
 <script>
 import ServiceEmpleados from '@/services/serviceempleados';
-import Global from '@/Global';
 
 
 const service=new ServiceEmpleados();
@@ -32,8 +31,7 @@ export default {
     methods:{
         login() {
             service.loginForUser(this.cajaName, this.cajaPassword).then((response)=>{
-                
-                Global.tokenEmpleados=response;
+                this.$emit('updateToken',response);
                 this.$router.push({ path: '/detalles' });
             })
         }

@@ -1,18 +1,35 @@
 <template>
- <div>
+ <div v-if="tokenEmpleados!='' ">
   <MenuComponent/>
   <router-view/>
  </div>
+  <div v-else>
+    <Logincomponent @updateToken="updateToken"/>
+  </div>
 </template>
 
 <script>
+import Logincomponent from './components/logincomponent.vue';
 import MenuComponent from './components/menucomponent.vue'
+import Global from './Global';
 
 
 export default {
   name: 'App',
   components: {
-    MenuComponent
+    MenuComponent,
+    Logincomponent
+  },
+  data() {
+    return {
+       tokenEmpleados:''
+    }
+  },
+  methods:{
+    updateToken(token){
+      this.tokenEmpleados=token;
+      Global.tokenEmpleados=token;
+    }
   }
 }
 </script>
